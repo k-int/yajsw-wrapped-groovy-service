@@ -7,6 +7,9 @@ This is a learning project - Trying to figure out the best way to get to a clean
 
 So far, the best candidate for an NT service wrapper looks like yajsw. yajsw however seems to give us many options for packaging up a groovy class and installing it as an NT Service. This project has a trivial service class that does nothing other than emit a heartbeat every few seconds. The idea is I will also collect together the different configuration options for packaging this thing up as a groovy NT service.
 
+
+Initially, we would like to attempt a java web-start service installation. In order to achieve that, we need to assemble a .zip file containing all dependencies and packaged services. Sounds like an assembly project.
+
 -----
 
 
