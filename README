@@ -1,0 +1,30 @@
+
+
+HowTo - Use maven to assemble and package a groovy based Windows NT Service
+
+
+-----
+
+
+Notes from project setup
+
+
+Skeleton maven project first set up with
+
+mvn archetype:generate -DarchetypeGroupId=org.codehaus.groovy.maven.archetypes -DarchetypeArtifactId=gmaven-archetype-basic
+
+Following responses
+
+Define value for property 'groupId': : com.k_int.samples
+Define value for property 'artifactId': : WrappedGroovyService
+Define value for property 'version': 1.0-SNAPSHOT: 
+Define value for property 'package': com.k_int.samples: 
+[INFO] Using property: name = Example Project
+Confirm properties configuration:
+groupId: com.k_int.samples
+artifactId: WrappedGroovyService
+version: 1.0-SNAPSHOT
+package: com.k_int.samples
+name: Example Project
+Y: 
+
