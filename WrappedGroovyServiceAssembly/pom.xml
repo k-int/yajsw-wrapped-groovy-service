@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- This pom has been modified to include build number in the filename of the deployed artifact.
+       In some cases maven won't store the build number. Run "mvn verify assembly:assemly" to force build number creation -->
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.k_int.samples</groupId>
+  <artifactId>WrappedGroovyServiceAssembly</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Assemble our Groovy Service into a .zip file that can be pushed up to our repository</name>
+  <url>http://www.k-int.com</url>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.0-beta-1</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <doCheck>false</doCheck>
+          <doUpdate>true</doUpdate>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.0-beta-1</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <doCheck>false</doCheck>
+          <doUpdate>true</doUpdate>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/dep.xml</descriptor>
+          </descriptors>
+          <!--<finalName>${project.artifactId}-${project.version}-${buildNumber}</finalName>-->
+          <outputDirectory>output/directory</outputDirectory>
+          <workDirectory>target/assembly/work</workDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+        <version>1.0-beta-2</version>
+      </extension>
+    </extensions>
+  </build>
+
+  <repositories>
+    <repository>
+      <releases/>
+      <id>apache-releases</id>
+      <name>Apache releases repository</name>
+      <url>http://tomcat.apache.org/dev/dist/m2-repository/org/apache/tomcat/</url>
+    </repository>
+    <repository>
+      <id>k-int-releases</id>
+      <name>Knowledge Integration Maven2 Repository</name>
+      <url>http://projects.k-int.com:8081/nexus-webapp-1.4.0/content/repositories/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency><groupId>com.k_int.samples</groupId><artifactId>WrappedGroovyService</artifactId><version>1.0.0-SNAPSHOT</version></dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>k-int-releases</id>
+      <name>Knowledge Intergation Maven2 Repository</name>
+      <url>dav:http://projects.k-int.com:8081/nexus-webapp-1.4.0/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>k-int-snapshots</id>
+      <name>Knowledge Intergation Maven2 Snapshot Repository</name>
+      <url>dav:http://projects.k-int.com:8081/nexus-webapp-1.4.0/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <site>
+      <id>k-int-repository</id>
+      <name>ISPP Project Website</name>
+      <url>scp://projects.k-int.com/var/www/apache2/projects.k-int.com/www/ispp/reference/${project.version}</url>
+    </site>
+  </distributionManagement>
+
+</project>
