@@ -3,6 +3,10 @@
 HowTo - Use maven to assemble and package a groovy based Windows NT Service
 
 
+This is a learning project - Trying to figure out the best way to get to a cleanly installed running groovy based service on Windows NT.
+
+So far, the best candidate for an NT service wrapper looks like yajsw. yajsw however seems to give us many options for packaging up a groovy class and installing it as an NT Service. This project has a trivial service class that does nothing other than emit a heartbeat every few seconds. The idea is I will also collect together the different configuration options for packaging this thing up as a groovy NT service.
+
 -----
 
 
